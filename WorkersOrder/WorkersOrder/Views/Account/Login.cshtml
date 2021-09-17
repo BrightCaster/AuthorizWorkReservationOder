@@ -1,0 +1,63 @@
+﻿@model WorkersOrder.Models.ViewModels.LoginModel
+@{
+    ViewData["Title"] = "Autorization";
+    
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="~/css/Autorization.css"/>
+</head>
+<body>
+    <main>
+        <form asp-action="Login" asp-controller="Account" asp-antiforgery="true">
+
+            <img src="~/image/solbegLogo.png" width="250" style="margin:0 0 0 30px;" />
+            <h1 class="form_title">Sign In</h1>
+            <div class="validation" asp-validation-summary="ModelOnly">
+                <style>
+                    main {
+                        width: 300px;
+                        height: 370px;
+                        padding: 32px;
+                        border-radius: 10px;
+                        box-shadow: 4px 0px 94px 0px rgba(34, 60, 80, 0.5);
+                        background: rgb(100,155,255);
+                        background: linear-gradient(42deg, rgba(100,155,255,1) 0%, rgba(255,255,255,1) 81%);
+                    }
+                    .validation {
+                        color: red;
+                        font-size: 15px;
+                    }
+                </style>
+            </div>
+            
+            <div>
+
+                <input type="text" asp-for="Login">
+                <label asp-for="Login">Login</label>
+                <span asp-validation-for="Login" />
+            </div>
+            <div>
+                <input asp-for="Password">
+                <label asp-for="Password">Password</label>
+                <span asp-validation-for="Password" />
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <input asp-action="Register" asp-controller="Account" tabindex="1" class="SignUp" type="submit" value="Sign up" />
+                    </td>
+                    <td>
+                        <input class="SignIn" type="submit" name="ss" value="Enter" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </main>
+</body>
+</html>
+
+

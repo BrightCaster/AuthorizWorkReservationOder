@@ -1,0 +1,73 @@
+﻿@model WorkersOrder.Models.ViewModels.RegisterModel
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/Registration.css" />
+</head>
+<body>
+    <main class="main">
+        <form asp-action="Register" asp-controller="Account" asp-antiforgery="true" >
+            <img src="~/image/solbegLogo.png" width="250" style="margin:0 0 0 30px;" />
+            <h1 class="form_title">Sign Up</h1>
+            <div class="validation" asp-validation-summary="ModelOnly">
+                <style>
+                    main {
+                        width: 300px;
+                        height: 570px;
+                        padding: 32px;
+                        border-radius: 10px;
+                        box-shadow: 4px 0px 94px 0px rgba(34, 60, 80, 0.5);
+                        background: rgb(100,155,255);
+                        background: linear-gradient(42deg, rgba(100,155,255,1) 0%, rgba(255,255,255,1) 81%);
+                    }
+
+                    .validation {
+                        color: red;
+                        font-size: 15px;
+                    }
+                </style>
+            </div>
+            <div>
+                <input asp-for="Surname" type="text">
+                <label asp-for="Surname">Surname</label>
+                <span asp-validation-for="Surname"/>
+            </div>
+            <div>
+                <input asp-for="Name" type="text">
+                <label asp-for="Name">Name</label>
+                <span asp-validation-for="Name"/>
+            </div>
+            <div>
+                <input type="text" asp-for="Login">
+                <label asp-for="Login">Login</label>
+                <span asp-validation-for="Login"/>
+            </div>
+            <div>
+                <input asp-for="Password">
+                <label asp-for="Password">Password</label>
+                <span asp-validation-for="Password"/>
+            </div>
+            <div>
+                <input type="text" asp-for="Role">
+                <label asp-for="Role">Role</label>
+                <span asp-validation-for="Role"/>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <input asp-action="Login" asp-controller="Account" class="BackToAutorization" type="submit" value="Back" />
+                    </td>
+                    <td>
+                        <input class="Confrim" type="submit" name="ss" value="Confrim" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </main>
+</body>
+</html>
