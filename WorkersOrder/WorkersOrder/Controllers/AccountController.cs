@@ -22,7 +22,7 @@ namespace WorkersOrder.Controllers
             this.db = context;
             this.service = new Service.Service(context);
         }
-        
+
         [HttpGet]
         public IActionResult Login(string Sign)
         {
@@ -58,6 +58,9 @@ namespace WorkersOrder.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model, string ss)
         {
+            if (ss=="Back")
+                return RedirectToAction("Login", "Account");
+            
             if (ModelState.IsValid)
             {
                 Employee employee = await service.Find(model, null);
@@ -70,7 +73,7 @@ namespace WorkersOrder.Controllers
                 }
                 ModelState.AddModelError("", "Invalid Login or Password");
             }
-            else if((model.Surname==null ||model.Name==null || model.Login == null||model.Password == null|| model.Role == null) && ss!=null)
+            else if((model.Surname==null ||model.Name==null || model.Login == null||model.Password == null|| model.Role == null) && ss=="Confrim")
                 ModelState.AddModelError("", "You didn't fill out everything");
             return View(model);
         }
@@ -91,7 +94,7 @@ namespace WorkersOrder.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Autorization", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
     }

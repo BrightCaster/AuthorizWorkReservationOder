@@ -1,0 +1,18 @@
+﻿body {
+    background-image: url(../image/backgroudOffice.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+main {
+    width: 300px;
+    height: 300px;
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 4px 0px 94px 0px rgba(34, 60, 80, 0.5);
+    background: rgb(100,155,255);
+    background: linear-gradient(42deg, rgba(100,155,255,1) 0%, rgba(255,255,255,1) 81%);
+}
