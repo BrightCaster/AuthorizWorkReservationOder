@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\WorkersOrder",
+    "\\WorkersOrder\\WorkersOrder",
+    "\\WorkersOrder\\WorkersOrder\\Controllers",
+    "\\WorkersOrder\\WorkersOrder\\Views",
+    "\\WorkersOrder\\WorkersOrder\\Views\\Home"
+  ],
+  "SelectedNode": "\\WorkersOrder\\WorkersOrder\\Views\\Home\\Menus.cshtml",
+  "PreviewInSolutionExplorer": false
+}
