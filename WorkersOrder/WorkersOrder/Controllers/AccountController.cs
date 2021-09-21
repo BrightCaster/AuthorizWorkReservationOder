@@ -35,10 +35,11 @@ namespace WorkersOrder.Controllers
         {
             if (ModelState.IsValid)
             {
-                Employee employee = await service.Find(null, model);
+                Employee employee = await service.FindAccountModel(null, model);
                 if (employee != null)
                 {
                     await Authenticate(model.Login);
+                    
                     return RedirectToAction("Admin", "Panel");
                 }
                 ModelState.AddModelError("","Invalid Login or Password");
@@ -63,7 +64,7 @@ namespace WorkersOrder.Controllers
             
             if (ModelState.IsValid)
             {
-                Employee employee = await service.Find(model, null);
+                Employee employee = await service.FindAccountModel(model, null);
                 if (employee == null)
                 {
                     service.AddToDBEmployee(model.Surname, model.Name, model.Login, model.Password, model.Role);

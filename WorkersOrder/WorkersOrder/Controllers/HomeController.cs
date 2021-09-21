@@ -20,7 +20,7 @@ namespace WorkersOrder.Controllers
         [Authorize]
         public IActionResult Menus()
         {
-            return View();
+            return RedirectToAction("Admin","Panel");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

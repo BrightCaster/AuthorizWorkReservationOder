@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WorkersOrder.Repository.LoginRepo
+namespace WorkersOrder.Repository
 {
     interface IRepository<T>:IDisposable where T:class
     {
@@ -13,5 +13,6 @@ namespace WorkersOrder.Repository.LoginRepo
         void Update(T item); // обновление объекта
         void Delete(int id); // удаление объекта по id
         void Save();  // сохранение изменений
+
     }
 }

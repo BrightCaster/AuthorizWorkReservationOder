@@ -17,7 +17,8 @@ namespace WorkersOrder
         {
         }
         public DbSet<Employee> employee { get; set; }
-        
+        public DbSet<Reservations> reservations { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

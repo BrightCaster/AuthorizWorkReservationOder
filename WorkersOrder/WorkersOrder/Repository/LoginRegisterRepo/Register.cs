@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WorkersOrder.Models;
-using WorkersOrder.Repository.LoginRepo;
+using WorkersOrder.Repository;
 
 namespace WorkersOrder.Repository.LoginRegisterRepo
 {

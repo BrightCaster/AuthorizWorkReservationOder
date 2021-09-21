@@ -16,3 +16,25 @@ main {
     background: rgb(100,155,255);
     background: linear-gradient(42deg, rgba(100,155,255,1) 0%, rgba(255,255,255,1) 81%);
 }
+.table,td{
+    text-align:center;
+    border:1px solid rgb(148 148 148);
+}
+.button {
+    background: transparent;
+    border: 1px solid #fff;
+    height: 25px;
+    font-size: 15px;
+    font-weight: 800;
+    box-shadow: 13px 13px 8px 2px rgba(34, 60, 80, 0.3);
+    transition-duration: 0.4s;
+}
+
+    .button:hover {
+        background-color: rgb(255 255 255);
+        color: rgba(251,63,63,1);
+        height: 25px;
+        font-size: 15px;
+        font-weight: 800;
+        box-shadow: 13px 13px 8px 2px rgba(34, 60, 80, 0.3);
+    }

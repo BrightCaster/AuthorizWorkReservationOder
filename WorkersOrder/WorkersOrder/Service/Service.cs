@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 using WorkersOrder.Models;
 using WorkersOrder.Models.ViewModels;
 using WorkersOrder.Repository.LoginRegisterRepo;
-using WorkersOrder.Repository.LoginRepo;
+using WorkersOrder.Repository;
+using WorkersOrder.Repository.ReservationTable;
 
 namespace WorkersOrder.Service
 {
     public class Service
     {
         private Context db;
-        public Register register ;
-        public Login login;
+        private Register register ;
+        private Reservation reservation;
         public Service(Context context)
         {
             this.db = context;
             this.register = new Register();
-            this.login = new Login();
+            this.reservation = new Reservation();
         }
-        public async Task<Employee> Find(RegisterModel Rmodel, LoginModel Lmodel)
+        public async Task<Employee> FindAccountModel(RegisterModel Rmodel, LoginModel Lmodel)
         {
             if (Rmodel == null)
             {
@@ -37,9 +38,18 @@ namespace WorkersOrder.Service
         {
             register.Create(new Employee { IDWorker = db.employee.Max(x => x.IDWorker)+1, Surname = Surname, Name = Name, Login = Login, Password = Password, Role = Role });
         }
+
+        public IEnumerable<Reservations> GetTableReservations()
+        {
+            return reservation.GetInList();
+        }
         public async Task Save()
         {
             await register.Save();
         }
+        // создать булеву функцию на проверку роли входа для accountController
+        
+        
+
     }
 }

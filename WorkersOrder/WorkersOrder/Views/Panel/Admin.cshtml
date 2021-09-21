@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@model IEnumerable<WorkersOrder.Models.Reservations>
+<!doctype html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,8 +7,37 @@
 </head>
 <body>
     <main>
-        <img src="~/image/solbegLogo.png" width="300"/>
-        <button 5
+        <img src="~/image/solbegLogo.png" width="300" />
+        <table class="table">
+            <tr>
+                <td>IDWorker</td>
+                <td>Start Date</td>
+                <td>End Date</td>
+                <td>Status</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IDWorker</td>
+                    <td>@item.StartDate.ToString()</td>
+                    <td>@item.EndDate.ToString()</td>
+                    <td>@item.Status</td>
+                    <td><input class="button" type="button" id="button" name="change" value="Change" /></td>
+                    <td><input class="button" type="button" id="button" name="Details" value="Details" /></td>
+                    <td><input class="button" type="button" id="button" name="Delete" value="Delete" /></td>
+                </tr>
+            }
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <form>
+                        <input asp-action="Logout" asp-controller="Account" type="submit" class="button" value="Log Out">
+                    </form>
+                </td>
+            </tr>
+        </table>
+
     </main>
 </body>
 </html>

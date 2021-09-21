@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WorkersOrder.Repository.LoginRepo;
+using WorkersOrder.Repository;
 using WorkersOrder.Models;
 
 namespace WorkersOrder.Repository.LoginRepo
