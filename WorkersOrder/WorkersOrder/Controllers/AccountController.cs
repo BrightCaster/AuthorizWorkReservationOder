@@ -39,7 +39,7 @@ namespace WorkersOrder.Controllers
                 if (employee != null)
                 {
                     await Authenticate(model.Login);
-                    return RedirectToAction("Menus", "Home");
+                    return RedirectToAction("Admin", "Panel");
                 }
                 ModelState.AddModelError("","Invalid Login or Password");
             }
