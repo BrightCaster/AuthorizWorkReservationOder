@@ -428,7 +428,6 @@ C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\Worker
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\WorkersOrder.csproj.AssemblyReference.cache
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\WorkersOrder.AssemblyInfoInputs.cache
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\WorkersOrder.AssemblyInfo.cs
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\WorkersOrder.csproj.CoreCompileInputs.cache
@@ -459,3 +458,4 @@ C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\Worker
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\WorkersOrder.genruntimeconfig.cache
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\EmployeePanel.cshtml.g.cs
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\bin\Debug\netcoreapp3.1\NgrokAspNetCore.Lib.dll
+C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\WorkersOrder.csproj.AssemblyReference.cache

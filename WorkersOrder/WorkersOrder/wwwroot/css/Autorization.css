@@ -52,42 +52,41 @@ div label{
     border: 1px solid #fff;
     width: 100px;
     height: 50px;
+    margin: 0 0 0 31px;
+    font-size: 15px;
+    font-weight: 800;
+    box-shadow: 13px 13px 8px 2px rgba(34, 60, 80, 0.3);
+    transition-duration: 0.4s;
+}
+    .SignUp:hover {
+        background-color: rgb(255 255 255);
+        color: rgba(251,63,63,1);
+        width: 100px;
+        height: 50px;
+        margin: 0 0 0 31px;
+        font-size: 15px;
+        font-weight: 800;
+        box-shadow: 13px 13px 8px 2px rgba(34, 60, 80, 0.3);
+    }
+.SignIn {
+    background: transparent;
+    border: 1px solid #fff;
+    width: 100px;
+    height: 50px;
     margin: 0 70px 0 -3px;
     font-size: 15px;
     font-weight: 800;
     box-shadow: 13px 13px 8px 2px rgba(34, 60, 80, 0.3);
     transition-duration: 0.4s;
 }
-.SignUp:hover {
+    .SignIn:hover {
         background-color: rgb(255 255 255);
         color: rgba(251,63,63,1);
+        border: 1px solid #fff;
         width: 100px;
         height: 50px;
         margin: 0 70px 0 -3px;
         font-size: 15px;
         font-weight: 800;
         box-shadow: 13px 13px 8px 2px rgba(34, 60, 80, 0.3);
-
-}
-.SignIn {
-    background: transparent;
-    border: 1px solid #fff;
-    width: 100px;
-    height: 50px;
-    margin: 0 0 0 31px;
-    font-size: 15px;
-    font-weight: 800;
-    box-shadow: 13px 13px 8px 2px rgba(34, 60, 80, 0.3);
-    transition-duration: 0.4s;
-}
-.SignIn:hover {
-    background-color: rgb(255 255 255);
-    color: rgba(251,63,63,1);
-    border: 1px solid #fff;
-    width: 100px;
-    height: 50px;
-    margin: 0 0 0 31px;
-    font-size: 15px;
-    font-weight: 800;
-    box-shadow: 13px 13px 8px 2px rgba(34, 60, 80, 0.3);
-}
+    }

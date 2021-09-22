@@ -39,8 +39,9 @@ namespace WorkersOrder.Controllers
                 if (employee != null)
                 {
                     await Authenticate(model.Login);
-                    
-                    return RedirectToAction("Admin", "Panel");
+                    if (service.TrueRoles(model))
+                        return RedirectToAction("Admin", "Panel");
+                    else return RedirectToAction("EmployeePanel", "Panel");
                 }
                 ModelState.AddModelError("","Invalid Login or Password");
             }
@@ -64,6 +65,12 @@ namespace WorkersOrder.Controllers
             
             if (ModelState.IsValid)
             {
+                if (!(service.Latin(model.Login) || service.Latin(model.Name) || service.Latin(model.Password) || service.Latin(model.Surname)))
+                {
+                    ModelState.AddModelError("", "Invalid input format, only Latin");
+                    return View(model);
+                }
+                
                 Employee employee = await service.FindAccountModel(model, null);
                 if (employee == null)
                 {
@@ -72,7 +79,7 @@ namespace WorkersOrder.Controllers
                     await Authenticate(model.Login);
                     return RedirectToAction("Login", "Account");
                 }
-                ModelState.AddModelError("", "Invalid Login or Password");
+                else ModelState.AddModelError("", "This login was already created earlier");
             }
             else if((model.Surname==null ||model.Name==null || model.Login == null||model.Password == null|| model.Role == null) && ss=="Confrim")
                 ModelState.AddModelError("", "You didn't fill out everything");

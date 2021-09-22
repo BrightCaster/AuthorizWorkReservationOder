@@ -26,12 +26,23 @@ namespace WorkersOrder.Service
         {
             if (Rmodel == null)
             {
-                
-                return await db.employee.FirstOrDefaultAsync(u => u.Login == Lmodel.Login && u.Password == Lmodel.Password);
+                Employee u = await db.employee.FirstOrDefaultAsync(u => u.Login == Lmodel.Login && u.Password==Lmodel.Password);
+                int indexSpace = u.Login.IndexOf(" ");
+                string Login;
+                if (indexSpace != -1)
+                    Login = u.Login.Remove(indexSpace);
+                else Login = u.Login;
+                string Password = u.Password;
+                if (Equals(Login, Lmodel.Login) && Equals(Password, Lmodel.Password))
+                    return u;
             }
             
             else if (Lmodel == null)
-                return await db.employee.FirstOrDefaultAsync(employee => employee.Login == Rmodel.Login);
+            {
+                Employee u = await db.employee.FirstOrDefaultAsync(u => u.Login == Rmodel.Login );
+                if (u == null) return null;
+                else return u;
+            }
             return null;
         }
         public void AddToDBEmployee(string Surname, string Name, string Login, string Password, int Role)
@@ -48,7 +59,26 @@ namespace WorkersOrder.Service
             await register.Save();
         }
         // создать булеву функцию на проверку роли входа для accountController
-        
+        public bool TrueRoles(LoginModel model)
+        {
+            Employee u = db.employee.FirstOrDefault(u => u.Login == model.Login);
+            int indexSpace = u.Login.IndexOf(" ");
+            string Login;
+            if (indexSpace != -1)
+                Login = u.Login.Remove(indexSpace);
+            else Login = u.Login;
+            if (Login == "admin") return true;
+            return false;
+        } 
+        public bool Latin(string str)
+        {
+            foreach (var item in str)
+            {
+                if (item >= 'a' && item <= 'z')
+                    return true;
+            }
+            return false;
+        }
         
 
     }
