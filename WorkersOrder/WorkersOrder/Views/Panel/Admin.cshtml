@@ -17,15 +17,28 @@
             </tr>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.IDWorker</td>
-                    <td>@item.StartDate.ToString()</td>
-                    <td>@item.EndDate.ToString()</td>
-                    <td>@item.Status</td>
-                    <td><input class="button" type="button" id="button" name="change" value="Change" /></td>
-                    <td><input class="button" type="button" id="button" name="Details" value="Details" /></td>
-                    <td><input class="button" type="button" id="button" name="Delete" value="Delete" /></td>
-                </tr>
+                    <tr>
+                        <td>@item.IDWorker</td>
+                        <td>@item.StartDate.ToString()</td>
+                        <td>@item.EndDate.ToString()</td>
+                        <td>@item.Status</td>
+                        <td>
+                            <form>
+                                <input asp-action="ChangesAdmin" asp-controller="Panel" class="button" type="submit" id="button" name="Changes" value="Change" />
+                                <input type="hidden" name="ID" value="@item.ReservationID" />
+                            </form>
+                        </td>
+                        <td>
+                            <form>
+                                <input asp-action="DetailsAdmin" asp-controller="Panel" class="button" type="submit" id="button" name="Details" value="Details" />
+                                <input type="hidden" name="ID" value="@item.ReservationID" />
+                            </form>
+                        </td>
+                        <td>
+                            <input asp-action="Delete" asp-controller="Panel" class="button" type="submit" id="button" name="Delete" value="Delete" />
+                            <input type="hidden" name="ID" value="@item.ReservationID" />
+                        </td>
+                    </tr>
             }
         </table>
         <table>

@@ -459,3 +459,8 @@ C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\Worker
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\EmployeePanel.cshtml.g.cs
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\bin\Debug\netcoreapp3.1\NgrokAspNetCore.Lib.dll
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\WorkersOrder.csproj.AssemblyReference.cache
+C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\ChangesAdmin.cshtml.g.cs
+C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\ChangesEmployee.cshtml.g.cs
+C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\DetailsAdmin.cshtml.g.cs
+C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\ChangeDevicesAdmin.cshtml.g.cs
+C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\DetailsEmployee.cshtml.g.cs

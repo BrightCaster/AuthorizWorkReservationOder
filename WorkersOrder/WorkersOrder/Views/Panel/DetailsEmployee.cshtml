@@ -1,0 +1,45 @@
+﻿
+@{
+    IEnumerable<WorkPlaces> workPlaces = Model;
+    int id = ViewBag.Id;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/Changes.css" />
+</head>
+<body>
+    <main>
+
+        <img src="~/image/solbegLogo.png" width="300" />
+        <table id="tabChanges">
+            @{
+                foreach (var item in workPlaces)
+                {
+                    if (item.OrderID != id) continue;
+                    <tr>
+                        <td>
+                            @item.DevicesID
+                        </td>
+                        <td>
+                            @item.Discription
+                        </td>
+
+                    </tr>
+                }
+            }
+        </table>
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <input type="submit" class="button" name="Back" value="Back" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </main>
+</body>
+</html>

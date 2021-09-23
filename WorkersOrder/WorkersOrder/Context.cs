@@ -18,6 +18,8 @@ namespace WorkersOrder
         }
         public DbSet<Employee> employee { get; set; }
         public DbSet<Reservations> reservations { get; set; }
+        public DbSet<WorkPlaces> workplaces { get; set; }
+        public DbSet<Devices> devices { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

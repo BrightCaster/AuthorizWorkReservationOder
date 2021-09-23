@@ -1,0 +1,60 @@
+﻿
+
+
+@model WorkersOrder.Models.ViewModels.ReservationModel
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/Changes.css" />
+</head>
+<body>
+    <main>
+        <form asp-action="ChangesAdmin" asp-controller="Panel">
+            <img src="~/image/solbegLogo.png" width="300" />
+            <table id="tabChanges">
+                <tr>
+                    <td>
+                        <label asp-for="StartDate">Start Date</label>
+                        <input type="date" asp-for="StartDate" />
+                        <span asp-validation-for="StartDate"></span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="EndDate">End Date</label>
+                        <input type="date" asp-for="EndDate" />
+                        <span asp-validation-for="EndDate"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Status">Status</label>
+                        <input type="number" min="1" max="2" asp-for="Status" />
+                        <span asp-validation-for="Status"></span>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <input type="submit" class="button" name="Confrim" value="Confrim">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" class="button" name="Cancel" value="Cancel">
+                    </td>
+                </tr>
+            </table>
+            <div style="display:grid; align-items:end">
+                <p align="left">*Start Date - This is the first day of booking</p>
+                <p align="left">*End Date - This is the last day of booking</p>
+                <p align="left">*Status - Order status: "1": The order status is free; "2": The order status has been deleted.</p>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

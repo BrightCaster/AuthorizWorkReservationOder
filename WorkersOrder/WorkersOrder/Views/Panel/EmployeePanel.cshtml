@@ -22,8 +22,18 @@
                     <td>@item.StartDate.ToString()</td>
                     <td>@item.EndDate.ToString()</td>
                     <td>@item.Status</td>
-                    <td><input class="button" type="button" id="button" name="change" value="Change" /></td>
-                    <td><input class="button" type="button" id="button" name="Details" value="Details" /></td>
+                    <td>
+                        <form>
+                            <input asp-action="ChangesEmployee" asp-controller="Panel" class="button" type="submit" id="button" name="Changes" value="Change" />
+                            <input type="hidden" name="ID" value="@item.ReservationID" />
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <input asp-action="DetailsEmployee" asp-controller="Panel" class="button" type="submit" id="button" name="Details" value="Details" />
+                            <input type="hidden" name="ID" value="@item.ReservationID" />
+                        </form>
+                    </td>
                 </tr>
             }
         </table>

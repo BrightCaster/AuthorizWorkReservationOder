@@ -8,6 +8,8 @@ using WorkersOrder.Models.ViewModels;
 using WorkersOrder.Repository.LoginRegisterRepo;
 using WorkersOrder.Repository;
 using WorkersOrder.Repository.ReservationTable;
+using WorkersOrder.Repository.WorkPlacesTable;
+using WorkersOrder.Repository.DevicesTable;
 
 namespace WorkersOrder.Service
 {
@@ -16,17 +18,22 @@ namespace WorkersOrder.Service
         private Context db;
         private Register register ;
         private Reservation reservation;
+        private WorkPlacesRepo WorkPlacesRepo;
+        private DevicesRepo DevicesRepo;
         public Service(Context context)
         {
             this.db = context;
             this.register = new Register();
             this.reservation = new Reservation();
+            this.WorkPlacesRepo = new WorkPlacesRepo();
+            this.DevicesRepo = new DevicesRepo();
         }
         public async Task<Employee> FindAccountModel(RegisterModel Rmodel, LoginModel Lmodel)
         {
             if (Rmodel == null)
             {
                 Employee u = await db.employee.FirstOrDefaultAsync(u => u.Login == Lmodel.Login && u.Password==Lmodel.Password);
+                if (u == null) return null;
                 int indexSpace = u.Login.IndexOf(" ");
                 string Login;
                 if (indexSpace != -1)
@@ -79,7 +86,31 @@ namespace WorkersOrder.Service
             }
             return false;
         }
-        
+        public void UpdateReservation(Reservations reservations)
+        {
+            reservation.Update(reservations);
+            reservation.Save();
+        }
+
+        public void UpdateWorkPlaces(WorkPlaces workPlaces)
+        {
+            WorkPlacesRepo.Update(workPlaces);
+            WorkPlacesRepo.Save();
+        }
+        public IEnumerable<WorkPlaces> GetTableWorkPlaces()
+        {
+            return WorkPlacesRepo.GetInList();
+        }
+        public void UpdateDevices(Devices devices)
+        {
+            DevicesRepo.Update(devices);
+            DevicesRepo.Save();
+        }
+        public IEnumerable<Devices> GetTableDevices()
+        {
+            return DevicesRepo.GetInList();
+        }
+
 
     }
 }
