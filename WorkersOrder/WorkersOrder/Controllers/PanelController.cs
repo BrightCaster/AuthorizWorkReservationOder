@@ -14,19 +14,28 @@ namespace WorkersOrder.Controllers
         private Service.Service service;
         private Reservations reservations;
         private WorkPlaces WorkPlaces;
-        private Devices Devices;
         private static int? id;
+        private static int countdev;
         public PanelController(Context context)
         {
             this.db = context;
             this.service = new Service.Service(context);
         }
-        
+        [HttpGet]
         public IActionResult Admin()
         {
-            
             return View(service.GetTableReservations());
         }
+        [HttpPost]
+        public IActionResult Admin(string Delete, string ID)
+        {
+            if (Delete != null)
+            {
+                service.DeleteReservation(Convert.ToInt32(ID));
+            }
+            return View(service.GetTableReservations());
+        }
+
         public IActionResult EmployeePanel()
         {
 
@@ -128,6 +137,24 @@ namespace WorkersOrder.Controllers
             ViewBag.Id = id;
             return View(service.GetTableWorkPlaces());
         }
-
+        [HttpGet]
+        public IActionResult AddDetailsAdmin(string CountDevices, string ID)
+        {
+            id = Convert.ToInt32(ID);
+            countdev = Convert.ToInt32(CountDevices);
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddDetailsAdmin(WorkPlaceModel model,string Cancel, string Confrim)
+        {
+            if (Cancel != null)
+                return RedirectToAction("DetailsAdmin");
+            if (ModelState.IsValid)
+            {
+                countdev = countdev + 1;
+                //
+            }
+            return View();
+        }
     }
 }

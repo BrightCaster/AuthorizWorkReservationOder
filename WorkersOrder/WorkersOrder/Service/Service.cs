@@ -110,7 +110,12 @@ namespace WorkersOrder.Service
         {
             return DevicesRepo.GetInList();
         }
-
+        public void DeleteReservation(int ID)
+        {
+            reservation.Delete(ID);
+            reservation.Save();
+        }
+        
 
     }
 }

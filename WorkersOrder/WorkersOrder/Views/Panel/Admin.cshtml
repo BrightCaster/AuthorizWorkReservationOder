@@ -18,7 +18,6 @@
             @foreach (var item in Model)
             {
                     <tr>
-                        <td>@item.IDWorker</td>
                         <td>@item.StartDate.ToString()</td>
                         <td>@item.EndDate.ToString()</td>
                         <td>@item.Status</td>
@@ -35,8 +34,10 @@
                             </form>
                         </td>
                         <td>
-                            <input asp-action="Delete" asp-controller="Panel" class="button" type="submit" id="button" name="Delete" value="Delete" />
-                            <input type="hidden" name="ID" value="@item.ReservationID" />
+                            <form asp-action="Admin"asp-controller="Panel">
+                                <input class="button" type="submit" id="button" name="Delete" value="Delete" />
+                                <input type="hidden" name="ID" value="@item.ReservationID" />
+                            </form>
                         </td>
                     </tr>
             }

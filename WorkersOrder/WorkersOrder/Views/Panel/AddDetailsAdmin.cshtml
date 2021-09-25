@@ -1,0 +1,41 @@
+﻿
+
+
+@model WorkersOrder.Models.ViewModels.WorkPlaceModel
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/Changes.css" />
+</head>
+<body>
+    <main>
+        <form asp-action="AddDetailsAdmin" asp-controller="Panel">
+            <img src="~/image/solbegLogo.png" width="300" />
+            <table id="tabChanges">
+
+                <tr>
+                    <td>
+                        <label asp-for="Discription">Discription</label>
+                        <input type="text" asp-for="Discription" />
+                        <span asp-validation-for="Discription"></span>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <input type="submit" class="button" name="Confrim" value="Confrim">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" class="button" name="Cancel" value="Cancel">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </main>
+</body>
+</html>

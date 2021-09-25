@@ -1,7 +1,8 @@
 ﻿
 @{ 
-    IEnumerable<WorkPlaces> workPlaces= Model;
+    IEnumerable<WorkPlaces> workPlaces = Model;
     int id = ViewBag.Id;
+    int countDevices = 0;
 }
 
 <!doctype html>
@@ -19,6 +20,7 @@
                     foreach (var item in workPlaces)
                     {
                         if (item.OrderID != id) continue;
+                        countDevices++;
                                 <tr>
                                     <td>
                                         @item.DevicesID
@@ -32,7 +34,13 @@
                                             <input type="hidden" name="ID" value="@item.DevicesID" />
                                         </form>
                                     </td>
-
+                                    <td>
+                                        <form>
+                                            <input asp-action="DeleteDetails" asp-controller="Panel" class="button" type="submit" id="button" name="Delete" value="Delete" />
+                                            <input type="hidden" name="ID" value="@item.DevicesID" />
+                                        </form>
+                                    </td>
+                                    
                                 </tr>
                     }
                 }
@@ -40,6 +48,19 @@
             <form>
                 <table>
                    <tr>
+                       <td>
+
+                           @if (countDevices == 5)
+                           {<input asp-action="AddDetailsAdmin" asp-controller="Panel" class="button" type="hidden" id="button" name="Add" value="Add" />
+                           }
+                           else
+                           {
+                               <input asp-action="AddDetailsAdmin" asp-controller="Panel" class="button" type="submit" id="button" name="Add" value="Add" />
+                               <input type="hidden" name="CountDevices" value="@countDevices" />
+                           }
+
+                           <input type="hidden" name="ID" value="@id" />
+                       </td>
                        <td>
                            <input type="submit" class="button" name="Back" value="Back"/>
                        </td>
