@@ -35,9 +35,9 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form>
-                                            <input asp-action="DeleteDetails" asp-controller="Panel" class="button" type="submit" id="button" name="Delete" value="Delete" />
-                                            <input type="hidden" name="ID" value="@item.DevicesID" />
+                                        <form asp-action="DetailsAdmin" asp-controller="Panel">
+                                            <input class="button" type="submit" id="button" name="Delete" value="Delete" />
+                                            <input type="hidden" name="ids" value="@item.DevicesID" />
                                         </form>
                                     </td>
                                     

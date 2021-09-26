@@ -88,18 +88,27 @@ namespace WorkersOrder.Controllers
             return View();
         }
 
-        
+        [HttpGet]
         public IActionResult DetailsAdmin(string ID, string Back)
         {
             if (Back != null)
                 return RedirectToAction("Admin");
-            if (id == null)
-            {
+            if(ID!=null)
                 id = Convert.ToInt32(ID);
-                
-            }
             ViewBag.Id = id;
             return View(service.GetTableWorkPlaces());
+        }
+        [HttpPost]
+        public IActionResult DetailsAdmin(string Back, string ids, string Delete)
+        {
+            if (Delete != null)
+            {
+                service.DeleteWorkplacesDevices(Convert.ToInt32(ids),id);
+            }
+            
+            ViewBag.Id = id;
+            return View(service.GetTableWorkPlaces());
+            
         }
 
         [HttpGet]
@@ -113,7 +122,7 @@ namespace WorkersOrder.Controllers
         public IActionResult ChangeDevicesAdmin(WorkPlaceModel model, string Cancel)
         {
             if (Cancel != null)
-                return RedirectToAction("Admin");
+                return RedirectToAction("DetailsAdmin");
             if (ModelState.IsValid)
             {
                 IEnumerable<WorkPlaces> table = service.GetTableWorkPlaces();
@@ -129,7 +138,7 @@ namespace WorkersOrder.Controllers
         public IActionResult DetailsEmployee(string ID, string Back)
         {
             if (Back != null)
-                return RedirectToAction("EmployeePanel");
+                return RedirectToAction("DetailsEpmloyee");
             if (id == null)
             {
                 id = Convert.ToInt32(ID);
@@ -145,16 +154,18 @@ namespace WorkersOrder.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddDetailsAdmin(WorkPlaceModel model,string Cancel, string Confrim)
+        public IActionResult AddDetailsAdmin(WorkPlaceModel model,string Cancel)
         {
             if (Cancel != null)
                 return RedirectToAction("DetailsAdmin");
             if (ModelState.IsValid)
             {
                 countdev = countdev + 1;
-                //
+                service.AddWorkplaceDevices(model.Discription,countdev,id);
+                return RedirectToAction("DetailsAdmin");
             }
             return View();
         }
+
     }
 }

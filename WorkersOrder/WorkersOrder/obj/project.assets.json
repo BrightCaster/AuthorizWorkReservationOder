@@ -8738,25 +8738,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mikha\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\mishka\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mikha\\OneDrive\\Документы\\GitHub\\AuthorizWorkReservationOder\\WorkersOrder\\WorkersOrder\\WorkersOrder.csproj",
+      "projectUniqueName": "C:\\Users\\mishka\\Documents\\GitHub\\AuthorizWorkReservationOder\\WorkersOrder\\WorkersOrder\\WorkersOrder.csproj",
       "projectName": "WorkersOrder",
-      "projectPath": "C:\\Users\\mikha\\OneDrive\\Документы\\GitHub\\AuthorizWorkReservationOder\\WorkersOrder\\WorkersOrder\\WorkersOrder.csproj",
-      "packagesPath": "C:\\Users\\mikha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mikha\\OneDrive\\Документы\\GitHub\\AuthorizWorkReservationOder\\WorkersOrder\\WorkersOrder\\obj\\",
+      "projectPath": "C:\\Users\\mishka\\Documents\\GitHub\\AuthorizWorkReservationOder\\WorkersOrder\\WorkersOrder\\WorkersOrder.csproj",
+      "packagesPath": "C:\\Users\\mishka\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mishka\\Documents\\GitHub\\AuthorizWorkReservationOder\\WorkersOrder\\WorkersOrder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\mikha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mishka\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -8828,7 +8833,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -10,6 +10,7 @@ using WorkersOrder.Repository;
 using WorkersOrder.Repository.ReservationTable;
 using WorkersOrder.Repository.WorkPlacesTable;
 using WorkersOrder.Repository.DevicesTable;
+using System.ComponentModel.DataAnnotations;
 
 namespace WorkersOrder.Service
 {
@@ -114,6 +115,26 @@ namespace WorkersOrder.Service
         {
             reservation.Delete(ID);
             reservation.Save();
+        }
+        public void AddWorkplaceDevices(string type, int index, int? ID)
+        {
+            IEnumerable<WorkPlaces> workPlaces = WorkPlacesRepo.GetInList();
+            int i = workPlaces.Count();
+            WorkPlacesRepo.Create(new WorkPlaces{DevicesID=index,Discription=type,ID=i+1,OrderID=(int)ID });
+            WorkPlacesRepo.Save();
+        }
+        public void DeleteWorkplacesDevices(int index, int? ID)
+        {
+            IEnumerable<WorkPlaces> workPlaces = WorkPlacesRepo.GetInList();
+            foreach (var item in workPlaces)
+            {
+                if (item.DevicesID == index && item.OrderID==(int)ID)
+                {
+                    int i = item.ID;
+                    WorkPlacesRepo.Delete(i);
+                }
+            }
+            WorkPlacesRepo.Save();
         }
         
 
