@@ -24,7 +24,10 @@ namespace WorkersOrder.Controllers
         [HttpGet]
         public IActionResult Admin(LoginModel model)
         {
+            
             string login = HttpContext.User.Identity.Name;
+            if (login != "admin")
+                return RedirectToAction("EmployeePanel");
             Employee employee = service.GetEmployee().FirstOrDefault(u=> service.RemoveSpace(u.Login) == login);
             TempData["UserName"] = employee.Name;
             TempData["UserSurname"] = employee.Surname;
@@ -45,14 +48,18 @@ namespace WorkersOrder.Controllers
         public IActionResult EmployeePanel()
         {
             string login = HttpContext.User.Identity.Name;
+            if (login == "admin")
+                return RedirectToAction("Admin");
             Employee employee = service.GetEmployee().FirstOrDefault(u => service.RemoveSpace(u.Login) == login);
             TempData["UserName"] = employee.Name;
             TempData["UserSurname"] = employee.Surname;
+            TempData["UserIdWorker"] = employee.IDWorker;
             ViewData["UserName"] = TempData["UserName"];
             ViewData["UserSurname"] = TempData["UserSurname"];
-            ViewData["UserIdWorker"] = employee.IDWorker;
+            ViewData["UserIdWorker"] = TempData["UserIdWorker"];
             return View(service.GetTableReservations());
         }
+        [HttpPost]
         public IActionResult EmployeePanel(string Delete, string ID)
         {
             if (Delete != null)
@@ -64,9 +71,12 @@ namespace WorkersOrder.Controllers
                 reservations = table.FirstOrDefault(u => u.ReservationID == Convert.ToInt32(id));
                 reservations.Status=1;
                 reservations.IDWorker = null;
+                service.UpdateReservation(reservations);
+                ViewData["UserIdWorker"] = TempData["UserIdWorker"];
             }
             return View(service.GetTableReservations());
         }
+
 
         [HttpGet]
         public IActionResult ChangesAdmin(string ID)
@@ -169,11 +179,11 @@ namespace WorkersOrder.Controllers
             return View();
         }
 
-        [HttpGet]
+        
         public IActionResult DetailsEmployee(string ID, string Back)
         {
             if (Back != null)
-                return RedirectToAction("DetailsEpmloyee");
+                return RedirectToAction("EmployeePanel");
             if (id == null)
             {
                 id = Convert.ToInt32(ID);

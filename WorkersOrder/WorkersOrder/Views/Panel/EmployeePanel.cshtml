@@ -2,7 +2,7 @@
 @{ 
     string Name = (string)ViewData["UserName"];
     string Surname = (string)ViewData["UserSurname"];
-    int IDW = (int)ViewData["UserIdWorker"];
+    int IDW = Convert.ToInt32(ViewData["UserIdWorker"]);
 }
 <!doctype html>
 <html>

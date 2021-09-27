@@ -474,3 +474,4 @@ C:\Users\mikha\OneDrive\Документы\GitHub\AuthorizWorkReservationOder\Wo
 C:\Users\mikha\OneDrive\Документы\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\AddDetailsAdmin.cshtml.g.cs
 C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\AddDetailsAdmin.cshtml.g.cs
 C:\Users\mikha\OneDrive\Документы\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\AddWorkplace.cshtml.g.cs
+C:\Users\mishka\Documents\GitHub\AuthorizWorkReservationOder\WorkersOrder\WorkersOrder\obj\Debug\netcoreapp3.1\Razor\Views\Panel\AddWorkplace.cshtml.g.cs

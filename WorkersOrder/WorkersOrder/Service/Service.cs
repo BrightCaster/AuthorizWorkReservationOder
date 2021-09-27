@@ -116,11 +116,10 @@ namespace WorkersOrder.Service
             reservation.Delete(ID);
             reservation.Save();
         }
-        public void AddWorkplaceDevices(string type, int index, int? ID)
+        public void AddWorkplaceDevices(string type, int DevID, int? IDs)
         {
             IEnumerable<WorkPlaces> workPlaces = WorkPlacesRepo.GetInList();
-            int i = workPlaces.Count();
-            WorkPlacesRepo.Create(new WorkPlaces{DevicesID=index,Discription=type,ID=i+1,OrderID=(int)ID });
+            WorkPlacesRepo.Create(new WorkPlaces{DevicesID=DevID,Discription=type,OrderID=(int)IDs });
             WorkPlacesRepo.Save();
         }
         public void DeleteWorkplacesDevices(int index, int? ID)

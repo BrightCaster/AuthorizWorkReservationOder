@@ -1,7 +1,8 @@
 ﻿
 @{
-    IEnumerable<WorkPlaces> workPlaces = Model;
+
     int id = ViewBag.Id;
+    int count = 0;
 }
 
 <!doctype html>
@@ -14,11 +15,13 @@
     <main>
 
         <img src="~/image/solbegLogo.png" width="300" />
-        <table id="tabChanges">
+        <table>
             @{
-                foreach (var item in workPlaces)
+                foreach (var item in Model)
                 {
                     if (item.OrderID != id) continue;
+                    count++;
+
                     <tr>
                         <td>
                             @item.DevicesID
@@ -29,8 +32,17 @@
 
                     </tr>
                 }
+                if (count==0)
+                {
+                    <tr>
+                        <td>The list of devices is still empty</td>
+                    </tr>
+                }
+
+
             }
         </table>
+        
         <form>
             <table>
                 <tr>
