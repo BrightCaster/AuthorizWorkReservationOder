@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<WorkersOrder.Models.Reservations>
+@{ 
+    int idsount=0;
+}
 <!doctype html>
 <html>
 <head>
@@ -10,13 +13,16 @@
         <img src="~/image/solbegLogo.png" width="300" />
         <table class="table">
             <tr>
+                <td>IDWorker</td>
                 <td>Start Date</td>
                 <td>End Date</td>
                 <td>Status</td>
             </tr>
             @foreach (var item in Model)
             {
+                idsount++;
                     <tr>
+                        <td>@item.IDWorker</td>
                         <td>@item.StartDate.ToString()</td>
                         <td>@item.EndDate.ToString()</td>
                         <td>@item.Status</td>
@@ -45,12 +51,24 @@
             <tr>
                 <td>
                     <form>
+                        <input asp-action="AddWorkplace" asp-controller="Panel" type="submit" class="button" value="Add">
+                        <input type="hidden" name="count" value="@idsount" />
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form>
                         <input asp-action="Logout" asp-controller="Account" type="submit" class="button" value="Log Out">
                     </form>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <p>@ViewData["UserName"] @ViewData["UserSurname"]</p>
+                </td>
+            </tr>
         </table>
-
     </main>
 </body>
 </html>

@@ -22,8 +22,14 @@ namespace WorkersOrder.Controllers
             this.service = new Service.Service(context);
         }
         [HttpGet]
-        public IActionResult Admin()
+        public IActionResult Admin(LoginModel model)
         {
+            string login = HttpContext.User.Identity.Name;
+            Employee employee = service.GetEmployee().FirstOrDefault(u=> service.RemoveSpace(u.Login) == login);
+            TempData["UserName"] = employee.Name;
+            TempData["UserSurname"] = employee.Surname;
+            ViewData["UserName"] = TempData["UserName"];
+            ViewData["UserSurname"] = TempData["UserSurname"];
             return View(service.GetTableReservations());
         }
         [HttpPost]
@@ -35,12 +41,33 @@ namespace WorkersOrder.Controllers
             }
             return View(service.GetTableReservations());
         }
-
+        [HttpGet]
         public IActionResult EmployeePanel()
         {
-
+            string login = HttpContext.User.Identity.Name;
+            Employee employee = service.GetEmployee().FirstOrDefault(u => service.RemoveSpace(u.Login) == login);
+            TempData["UserName"] = employee.Name;
+            TempData["UserSurname"] = employee.Surname;
+            ViewData["UserName"] = TempData["UserName"];
+            ViewData["UserSurname"] = TempData["UserSurname"];
+            ViewData["UserIdWorker"] = employee.IDWorker;
             return View(service.GetTableReservations());
         }
+        public IActionResult EmployeePanel(string Delete, string ID)
+        {
+            if (Delete != null)
+            {
+                id = Convert.ToInt32(ID);
+                string login = HttpContext.User.Identity.Name;
+                Employee employee = service.GetEmployee().FirstOrDefault(u => service.RemoveSpace(u.Login) == login);
+                IEnumerable<Reservations> table = service.GetTableReservations();
+                reservations = table.FirstOrDefault(u => u.ReservationID == Convert.ToInt32(id));
+                reservations.Status=1;
+                reservations.IDWorker = null;
+            }
+            return View(service.GetTableReservations());
+        }
+
         [HttpGet]
         public IActionResult ChangesAdmin(string ID)
         {
@@ -54,8 +81,12 @@ namespace WorkersOrder.Controllers
                 return RedirectToAction("Admin");
             if (ModelState.IsValid)
             {
+                string login = HttpContext.User.Identity.Name;
+                Employee employee = service.GetEmployee().FirstOrDefault(u => service.RemoveSpace(u.Login) == login);
+                
                 IEnumerable<Reservations> table = service.GetTableReservations();
                 reservations = table.FirstOrDefault(u => u.ReservationID == Convert.ToInt32(id));
+                reservations.IDWorker = employee.IDWorker;
                 reservations.StartDate = model.StartDate;
                 reservations.EndDate = model.EndDate;
                 reservations.Status = model.Status;
@@ -78,9 +109,13 @@ namespace WorkersOrder.Controllers
                 return RedirectToAction("EmployeePanel");
             if (ModelState.IsValid)
             {
+                string login = HttpContext.User.Identity.Name;
+                Employee employee = service.GetEmployee().FirstOrDefault(u => service.RemoveSpace(u.Login) == login);
                 IEnumerable<Reservations> table = service.GetTableReservations();
                 reservations = table.FirstOrDefault(u => u.ReservationID == Convert.ToInt32(id));
                 reservations.Status = model.Status;
+                if (reservations.Status == 2)
+                    reservations.IDWorker = employee.IDWorker;
                 service.UpdateReservation(reservations);
                 id = null;
                 return RedirectToAction("EmployeePanel");
@@ -93,7 +128,7 @@ namespace WorkersOrder.Controllers
         {
             if (Back != null)
                 return RedirectToAction("Admin");
-            if(ID!=null)
+            if (ID != null)
                 id = Convert.ToInt32(ID);
             ViewBag.Id = id;
             return View(service.GetTableWorkPlaces());
@@ -103,12 +138,12 @@ namespace WorkersOrder.Controllers
         {
             if (Delete != null)
             {
-                service.DeleteWorkplacesDevices(Convert.ToInt32(ids),id);
+                service.DeleteWorkplacesDevices(Convert.ToInt32(ids), id);
             }
-            
+
             ViewBag.Id = id;
             return View(service.GetTableWorkPlaces());
-            
+
         }
 
         [HttpGet]
@@ -154,15 +189,35 @@ namespace WorkersOrder.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddDetailsAdmin(WorkPlaceModel model,string Cancel)
+        public IActionResult AddDetailsAdmin(WorkPlaceModel model, string Cancel)
         {
             if (Cancel != null)
                 return RedirectToAction("DetailsAdmin");
             if (ModelState.IsValid)
             {
                 countdev = countdev + 1;
-                service.AddWorkplaceDevices(model.Discription,countdev,id);
+                service.AddWorkplaceDevices(model.Discription, countdev, id);
                 return RedirectToAction("DetailsAdmin");
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AddWorkplace(string count)
+        {
+            id = Convert.ToInt32(count);
+            
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddWorkplace(ReservationModel model, string Cancel)
+        {
+            if (Cancel != null)
+                return RedirectToAction("Admin");
+            if (ModelState.IsValid)
+            {
+                int ReserID = (int)id + 1;
+                service.AddWorkplace(ReserID, model);
+                return RedirectToAction("Admin");
             }
             return View();
         }

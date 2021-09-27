@@ -39,6 +39,9 @@ namespace WorkersOrder.Controllers
                 if (employee != null)
                 {
                     await Authenticate(model.Login);
+                    TempData["UserName"] = employee.Name;
+                    TempData["UserSurname"] = employee.Surname;
+                    
                     if (service.TrueRoles(model))
                         return RedirectToAction("Admin", "Panel");
                     else return RedirectToAction("EmployeePanel", "Panel");

@@ -136,7 +136,25 @@ namespace WorkersOrder.Service
             }
             WorkPlacesRepo.Save();
         }
-        
+        public void AddWorkplace(int ReserID, ReservationModel model)
+        {
+            reservation.Create(new Reservations{IDWorker=null, StartDate=model.StartDate, EndDate=model.EndDate, Status=1});
+            reservation.Save();
+        }
+        public IEnumerable<Employee> GetEmployee()
+        {
+            return register.GetInList();
+        }
+        public string RemoveSpace(string s)
+        {
+            int indexSpace = s.IndexOf(" ");
+            string Login;
+            if (indexSpace != -1)
+                Login = s.Remove(indexSpace);
+            else Login = s;
+            return Login;
+        }
+
 
     }
 }

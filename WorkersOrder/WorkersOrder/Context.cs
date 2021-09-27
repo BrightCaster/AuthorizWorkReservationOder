@@ -25,7 +25,7 @@ namespace WorkersOrder
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=WorkUsers;Trusted_Connection=True;MultipleActiveResultSets=True");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-L6E2SIG6\\SQLEXPRESS;Database=WorkUsers;Trusted_Connection=True;MultipleActiveResultSets=True");
             }
         }
     }

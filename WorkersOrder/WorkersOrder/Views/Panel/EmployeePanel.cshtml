@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<WorkersOrder.Models.Reservations>
+@{ 
+    string Name = (string)ViewData["UserName"];
+    string Surname = (string)ViewData["UserSurname"];
+    int IDW = (int)ViewData["UserIdWorker"];
+}
 <!doctype html>
 <html>
 <head>
@@ -10,31 +15,33 @@
         <img src="~/image/solbegLogo.png" width="300" />
         <table class="table">
             <tr>
-                <td>IDWorker</td>
                 <td>Start Date</td>
                 <td>End Date</td>
                 <td>Status</td>
             </tr>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.IDWorker</td>
-                    <td>@item.StartDate.ToString()</td>
-                    <td>@item.EndDate.ToString()</td>
-                    <td>@item.Status</td>
-                    <td>
-                        <form>
-                            <input asp-action="ChangesEmployee" asp-controller="Panel" class="button" type="submit" id="button" name="Changes" value="Change" />
-                            <input type="hidden" name="ID" value="@item.ReservationID" />
-                        </form>
-                    </td>
-                    <td>
-                        <form>
-                            <input asp-action="DetailsEmployee" asp-controller="Panel" class="button" type="submit" id="button" name="Details" value="Details" />
-                            <input type="hidden" name="ID" value="@item.ReservationID" />
-                        </form>
-                    </td>
-                </tr>
+                if (item.IDWorker == null)
+                {
+                    <tr>
+                        <td>@item.StartDate.ToString()</td>
+                        <td>@item.EndDate.ToString()</td>
+                        <td>@item.Status</td>
+                        <td>
+                            <form>
+                                <input asp-action="ChangesEmployee" asp-controller="Panel" class="button" type="submit" id="button" name="Changes" value="Change" />
+                                <input type="hidden" name="ID" value="@item.ReservationID" />
+                            </form>
+                        </td>
+                        <td>
+                            <form>
+                                <input asp-action="DetailsEmployee" asp-controller="Panel" class="button" type="submit" id="button" name="Details" value="Details" />
+                                <input type="hidden" name="ID" value="@item.ReservationID" />
+                            </form>
+                        </td>
+                    </tr>
+                }
+
             }
         </table>
         <table>
@@ -45,6 +52,36 @@
                     </form>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <p>@ViewData["UserName"] @ViewData["UserSurname"]</p>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Start Date</td>
+                <td>End Date</td>
+            </tr>
+            @{ 
+                foreach (var item in Model)
+                {
+                if (item.IDWorker == IDW)
+                {
+                        <tr>
+                            
+                            <td>@item.StartDate.ToString()</td>
+                            <td>@item.EndDate.ToString()</td>
+                            <td>
+                                <form asp-action="EmployeePanel" asp-controller="Panel">
+                                    <input class="button" type="submit" id="button" name="Delete" value="Delete" />
+                                    <input type="hidden" name="ID" value="@item.ReservationID" />
+                                </form>
+                            </td>
+                        </tr>
+                }
+                }
+            }
         </table>
 
     </main>
