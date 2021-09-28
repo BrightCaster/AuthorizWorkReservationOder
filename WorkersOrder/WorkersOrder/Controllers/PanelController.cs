@@ -15,6 +15,7 @@ namespace WorkersOrder.Controllers
         private Reservations reservations;
         private WorkPlaces WorkPlaces;
         private static int? id;
+        private static int? iddevice;
         private static int countdev;
         public PanelController(Context context)
         {
@@ -159,7 +160,7 @@ namespace WorkersOrder.Controllers
         [HttpGet]
         public IActionResult ChangeDevicesAdmin(string ID)
         {
-            id = Convert.ToInt32(ID);
+            iddevice = Convert.ToInt32(ID);
             return View();
         }
 
@@ -171,7 +172,7 @@ namespace WorkersOrder.Controllers
             if (ModelState.IsValid)
             {
                 IEnumerable<WorkPlaces> table = service.GetTableWorkPlaces();
-                WorkPlaces = table.FirstOrDefault(u => u.DevicesID == Convert.ToInt32(id));
+                WorkPlaces = table.FirstOrDefault(u => u.DevicesID == Convert.ToInt32(iddevice) && u.OrderID==id);
                 WorkPlaces.Discription = model.Discription;
                 service.UpdateWorkPlaces(WorkPlaces);
                 return RedirectToAction("DetailsAdmin");

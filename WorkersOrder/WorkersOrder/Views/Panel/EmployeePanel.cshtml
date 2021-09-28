@@ -13,20 +13,20 @@
 <body>
     <main>
         <img src="~/image/solbegLogo.png" width="300" />
-        <table class="table">
+        <table class="tables">
             <tr>
-                <td>Start Date</td>
-                <td>End Date</td>
-                <td>Status</td>
+                <td class="tds">Start Date</td>
+                <td class="tds">End Date</td>
+                <td class="tds">Status</td>
             </tr>
             @foreach (var item in Model)
             {
                 if (item.IDWorker == null)
                 {
                     <tr>
-                        <td>@item.StartDate.ToString()</td>
-                        <td>@item.EndDate.ToString()</td>
-                        <td>@item.Status</td>
+                        <td class="tds">@item.StartDate.ToString()</td>
+                        <td class="tds">@item.EndDate.ToString()</td>
+                        <td class="tds">@item.Status</td>
                         <td>
                             <form>
                                 <input asp-action="ChangesEmployee" asp-controller="Panel" class="button" type="submit" id="button" name="Changes" value="Change" />
@@ -44,7 +44,7 @@
 
             }
         </table>
-        <table>
+        <table class="tabx" border="0"id="tabx" >
             <tr>
                 <td>
                     <form>
@@ -53,15 +53,15 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <p>@ViewData["UserName"] @ViewData["UserSurname"]</p>
+                <td style="text-align:left; margin: 4px 0 0 0; border: 2px solid #ffffff;">
+                    User:<p>@ViewData["UserName"] @ViewData["UserSurname"]</p>
                 </td>
             </tr>
         </table>
         <table>
             <tr>
-                <td>Start Date</td>
-                <td>End Date</td>
+                <td class="tds">Start Date</td>
+                <td class="tds">End Date</td>
             </tr>
             @{ 
                 foreach (var item in Model)
@@ -70,8 +70,8 @@
                 {
                         <tr>
                             
-                            <td>@item.StartDate.ToString()</td>
-                            <td>@item.EndDate.ToString()</td>
+                            <td class="tds">@item.StartDate.ToString()</td>
+                            <td class="tds">@item.EndDate.ToString()</td>
                             <td>
                                 <form asp-action="EmployeePanel" asp-controller="Panel">
                                     <input class="button" type="submit" id="button" name="Delete" value="Delete" />
