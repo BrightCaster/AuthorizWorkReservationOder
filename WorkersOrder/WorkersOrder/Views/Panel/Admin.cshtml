@@ -59,13 +59,6 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <form>
-                        <input asp-action="Logout" asp-controller="Account" type="submit" class="button" value="Log Out">
-                    </form>
-                </td>
-            </tr>
-            <tr>
                 <td style="font-weight:700;font-size:17px;text-align:left; margin: 4px 0 0 0; border: 2px solid #ffffff;">
                     User:<p style="color:white">@ViewData["UserName"] @ViewData["UserSurname"]</p>
                 </td>
@@ -95,6 +88,15 @@
                     }
                 }
             }
+        </table>
+        <table align="right">
+            <tr>
+                <td>
+                    <form>
+                        <input asp-action="Logout" asp-controller="Account" type="submit" class="button" value="Log Out">
+                    </form>
+                </td>
+            </tr>
         </table>
     </main>
 </body>

@@ -1,6 +1,6 @@
 ﻿
 @{
-
+    IEnumerable<WorkPlaces> workPlaces = Model;
     int id = ViewBag.Id;
     int count = 0;
 }
@@ -17,7 +17,7 @@
         <img src="~/image/solbegLogo.png" width="300" />
         <table>
             @{
-                foreach (var item in Model)
+                foreach (var item in workPlaces)
                 {
                     if (item.OrderID != id) continue;
                     count++;

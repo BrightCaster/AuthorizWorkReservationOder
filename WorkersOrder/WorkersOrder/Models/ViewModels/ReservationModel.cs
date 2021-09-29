@@ -19,5 +19,6 @@ namespace WorkersOrder.Models.ViewModels
         public DateTime EndDate { get; set; }
         [Required]
         public int Status { get; set; }
+        
     }
 }

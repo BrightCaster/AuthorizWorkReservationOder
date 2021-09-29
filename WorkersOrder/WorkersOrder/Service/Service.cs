@@ -141,10 +141,17 @@ namespace WorkersOrder.Service
             }
             WorkPlacesRepo.Save();
         }
-        public void AddWorkplace(int ReserID, ReservationModel model)
+        public void AddWorkplace(int ReserID, ReservationModel model, DateTime dateNow, out bool trues)
         {
             reservation.Create(new Reservations{IDWorker=null, StartDate=model.StartDate, EndDate=model.EndDate, Status=1});
-            reservation.Save();
+            if (ValidDate(model.StartDate, model.EndDate, dateNow))
+            {
+                reservation.Save();
+                trues = true;
+            }
+                
+            else trues = false;
+            
         }
         public IEnumerable<Employee> GetEmployee()
         {
@@ -158,6 +165,12 @@ namespace WorkersOrder.Service
                 Login = s.Remove(indexSpace);
             else Login = s;
             return Login;
+        }
+        public bool ValidDate(DateTime Start, DateTime End, DateTime dateNow)
+        {
+            if (Start <= End && Start>=dateNow)
+                return true;
+            else return false;
         }
         
 

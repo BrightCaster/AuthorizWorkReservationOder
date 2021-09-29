@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WorkersOrder.Models.ViewModels;
 using WorkersOrder.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace WorkersOrder.Controllers
 {
@@ -115,13 +116,19 @@ namespace WorkersOrder.Controllers
                 
                 IEnumerable<Reservations> table = service.GetTableReservations();
                 reservations = table.FirstOrDefault(u => u.ReservationID == Convert.ToInt32(id));
-                reservations.IDWorker = employee.IDWorker;
-                reservations.StartDate = model.StartDate;
-                reservations.EndDate = model.EndDate;
-                reservations.Status = model.Status;
-                service.UpdateReservation(reservations);
-                id = null;
-                return RedirectToAction("Admin");
+                if(service.ValidDate(model.StartDate,model.EndDate, DateTime.Now))
+                {
+                    reservations.IDWorker = employee.IDWorker;
+
+                    reservations.StartDate = model.StartDate;
+                    reservations.EndDate = model.EndDate;
+
+                    reservations.Status = model.Status;
+                    service.UpdateReservation(reservations);
+                    id = null;
+                    return RedirectToAction("Admin");
+                }
+                else ModelState.AddModelError("","Wrong format date");
             }
             return View();
         }
@@ -203,10 +210,9 @@ namespace WorkersOrder.Controllers
         {
             if (Back != null)
                 return RedirectToAction("EmployeePanel");
-            if (id == null)
-            {
-                id = Convert.ToInt32(ID);
-            }
+            
+            id = Convert.ToInt32(ID);
+            
             ViewBag.Id = id;
             return View(service.GetTableWorkPlaces());
         }
@@ -240,13 +246,21 @@ namespace WorkersOrder.Controllers
         [HttpPost]
         public IActionResult AddWorkplace(ReservationModel model, string Cancel)
         {
+            bool trues;
             if (Cancel != null)
                 return RedirectToAction("Admin");
             if (ModelState.IsValid)
             {
+                
                 int ReserID = (int)id + 1;
-                service.AddWorkplace(ReserID, model);
-                return RedirectToAction("Admin");
+                service.AddWorkplace(ReserID, model, DateTime.Now, out trues);
+                if (trues)
+                    return RedirectToAction("Admin");
+                else
+                {
+                    ModelState.AddModelError("", "Wrong format date");
+                    return View();
+                }
             }
             return View();
         }
