@@ -9,7 +9,7 @@
 }
 main {
     width: 600px;
-    height: 400px;
+    height: auto !important;
     padding: 32px;
     border-radius: 10px;
     box-shadow: 4px 0px 94px 0px rgba(34, 60, 80, 0.5);
@@ -20,7 +20,7 @@ main {
 .button {
     background: transparent;
     border: 1px solid #fff;
-    height: 25px;
+    height: 25px !important;
     width: 100%;
     font-size: 15px;
     font-weight: 800;
@@ -31,7 +31,7 @@ main {
     .button:hover {
         background-color: rgb(255 255 255);
         color: rgba(251,63,63,1);
-        height: 22px;
+        height: initial;
         width:97%;
         font-size: 15px;
         font-weight: 800;

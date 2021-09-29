@@ -11,6 +11,7 @@ using WorkersOrder.Repository.ReservationTable;
 using WorkersOrder.Repository.WorkPlacesTable;
 using WorkersOrder.Repository.DevicesTable;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace WorkersOrder.Service
 {
@@ -42,7 +43,11 @@ namespace WorkersOrder.Service
                 else Login = u.Login;
                 string Password = u.Password;
                 if (Equals(Login, Lmodel.Login) && Equals(Password, Lmodel.Password))
+                {
+                    u.Login = Login;
                     return u;
+                }
+                    
             }
             
             else if (Lmodel == null)
@@ -80,12 +85,13 @@ namespace WorkersOrder.Service
         } 
         public bool Latin(string str)
         {
-            foreach (var item in str)
+            bool check = true;
+            foreach (char item in str)
             {
-                if (item >= 'a' && item <= 'z')
-                    return true;
+                if ((int)item < 97 || (int)item > 122)
+                    return false;
             }
-            return false;
+            return true;
         }
         public void UpdateReservation(Reservations reservations)
         {
@@ -153,6 +159,7 @@ namespace WorkersOrder.Service
             else Login = s;
             return Login;
         }
+        
 
 
     }

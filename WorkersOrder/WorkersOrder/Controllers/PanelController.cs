@@ -17,31 +17,50 @@ namespace WorkersOrder.Controllers
         private static int? id;
         private static int? iddevice;
         private static int countdev;
+        
+
         public PanelController(Context context)
         {
             this.db = context;
             this.service = new Service.Service(context);
+            
         }
         [HttpGet]
         public IActionResult Admin(LoginModel model)
         {
-            
             string login = HttpContext.User.Identity.Name;
             if (login != "admin")
                 return RedirectToAction("EmployeePanel");
             Employee employee = service.GetEmployee().FirstOrDefault(u=> service.RemoveSpace(u.Login) == login);
-            TempData["UserName"] = employee.Name;
-            TempData["UserSurname"] = employee.Surname;
-            ViewData["UserName"] = TempData["UserName"];
-            ViewData["UserSurname"] = TempData["UserSurname"];
+            ViewData["UserName"] = employee.Name;
+            ViewData["UserSurname"] = employee.Surname;
+            ViewData["UserIdWorker"] = employee.IDWorker;
             return View(service.GetTableReservations());
         }
         [HttpPost]
-        public IActionResult Admin(string Delete, string ID)
+        public IActionResult Admin(string Delete, string ID, string DeleteAdminWork)
         {
+            
+            string login = HttpContext.User.Identity.Name;
+            Employee employee = service.GetEmployee().FirstOrDefault(u => service.RemoveSpace(u.Login) == login);
+            if (DeleteAdminWork != null)
+            {
+                id = Convert.ToInt32(ID);
+                IEnumerable<Reservations> table = service.GetTableReservations();
+                reservations = table.FirstOrDefault(u => u.ReservationID == Convert.ToInt32(id));
+                reservations.Status = 1;
+                reservations.IDWorker = null;
+                service.UpdateReservation(reservations);
+                ViewData["UserName"] = employee.Name;
+                ViewData["UserSurname"] = employee.Surname;
+                ViewData["UserIdWorker"] = employee.IDWorker;
+                return View(service.GetTableReservations());
+            }
             if (Delete != null)
             {
                 service.DeleteReservation(Convert.ToInt32(ID));
+                ViewData["UserName"] = employee.Name;
+                ViewData["UserSurname"] = employee.Surname;
             }
             return View(service.GetTableReservations());
         }
@@ -52,12 +71,9 @@ namespace WorkersOrder.Controllers
             if (login == "admin")
                 return RedirectToAction("Admin");
             Employee employee = service.GetEmployee().FirstOrDefault(u => service.RemoveSpace(u.Login) == login);
-            TempData["UserName"] = employee.Name;
-            TempData["UserSurname"] = employee.Surname;
-            TempData["UserIdWorker"] = employee.IDWorker;
-            ViewData["UserName"] = TempData["UserName"];
-            ViewData["UserSurname"] = TempData["UserSurname"];
-            ViewData["UserIdWorker"] = TempData["UserIdWorker"];
+            ViewData["UserName"] = employee.Name;
+            ViewData["UserSurname"] = employee.Surname;
+            ViewData["UserIdWorker"] = employee.IDWorker;
             return View(service.GetTableReservations());
         }
         [HttpPost]
@@ -73,7 +89,9 @@ namespace WorkersOrder.Controllers
                 reservations.Status=1;
                 reservations.IDWorker = null;
                 service.UpdateReservation(reservations);
-                ViewData["UserIdWorker"] = TempData["UserIdWorker"];
+                ViewData["UserName"] = employee.Name;
+                ViewData["UserSurname"] = employee.Surname;
+                ViewData["UserIdWorker"] = employee.IDWorker;
             }
             return View(service.GetTableReservations());
         }

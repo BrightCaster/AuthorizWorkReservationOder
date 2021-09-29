@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<WorkersOrder.Models.Reservations>
-@{ 
-    int idsount=0;
+@{
+    int idsount = 0;
+    int IDW = Convert.ToInt32(ViewData["UserIdWorker"]);
 }
+
 <!doctype html>
 <html>
 <head>
@@ -11,7 +13,7 @@
 <body>
     <main>
         <img src="~/image/solbegLogo.png" width="300" />
-        <table >
+        <table>
             <tr>
                 <td class="tds">IDWorker</td>
                 <td class="tds">Start Date</td>
@@ -21,30 +23,30 @@
             @foreach (var item in Model)
             {
                 idsount++;
-                    <tr>
-                        <td class="tds">@item.IDWorker</td>
-                        <td class="tds">@item.StartDate.ToString()</td>
-                        <td class="tds">@item.EndDate.ToString()</td>
-                        <td class="tds">@item.Status</td>
-                        <td>
-                            <form>
-                                <input asp-action="ChangesAdmin" asp-controller="Panel" class="button" type="submit" id="button" name="Changes" value="Change" />
-                                <input type="hidden" name="ID" value="@item.ReservationID" />
-                            </form>
-                        </td>
-                        <td>
-                            <form>
-                                <input asp-action="DetailsAdmin" asp-controller="Panel" class="button" type="submit" id="button" name="Details" value="Details" />
-                                <input type="hidden" name="ID" value="@item.ReservationID" />
-                            </form>
-                        </td>
-                        <td>
-                            <form asp-action="Admin"asp-controller="Panel">
-                                <input class="button" type="submit" id="button" name="Delete" value="Delete" />
-                                <input type="hidden" name="ID" value="@item.ReservationID" />
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="tds">@item.IDWorker</td>
+                    <td class="tds">@item.StartDate.ToString()</td>
+                    <td class="tds">@item.EndDate.ToString()</td>
+                    <td class="tds">@item.Status</td>
+                    <td>
+                        <form>
+                            <input asp-action="ChangesAdmin" asp-controller="Panel" class="button" type="submit" id="button" name="Changes" value="Change" />
+                            <input type="hidden" name="ID" value="@item.ReservationID" />
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <input asp-action="DetailsAdmin" asp-controller="Panel" class="button" type="submit" id="button" name="Details" value="Details" />
+                            <input type="hidden" name="ID" value="@item.ReservationID" />
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-action="Admin" asp-controller="Panel">
+                            <input class="button" type="submit" id="button" name="Delete" value="Delete" />
+                            <input type="hidden" name="ID" value="@item.ReservationID" />
+                        </form>
+                    </td>
+                </tr>
             }
         </table>
         <table>
@@ -64,10 +66,35 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align:left; margin: 4px 0 0 0; border: 2px solid #ffffff;">
-                    User:<p>@ViewData["UserName"] @ViewData["UserSurname"]</p>
+                <td style="font-weight:700;font-size:17px;text-align:left; margin: 4px 0 0 0; border: 2px solid #ffffff;">
+                    User:<p style="color:white">@ViewData["UserName"] @ViewData["UserSurname"]</p>
                 </td>
             </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="tds">Start Date</td>
+                <td class="tds">End Date</td>
+            </tr>
+            @{
+                foreach (var item in Model)
+                {
+                    if (item.IDWorker == IDW)
+                    {
+                        <tr>
+
+                            <td class="tds">@item.StartDate.ToString()</td>
+                            <td class="tds">@item.EndDate.ToString()</td>
+                            <td>
+                                <form asp-action="Admin" asp-controller="Panel">
+                                    <input class="button" type="submit" id="button" name="DeleteAdminWork" value="Delete" />
+                                    <input type="hidden" name="ID" value="@item.ReservationID" />
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
         </table>
     </main>
 </body>
