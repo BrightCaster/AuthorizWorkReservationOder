@@ -17,7 +17,7 @@
                 <tr>
                     <td>
                         <label asp-for="StartDate">Start Date</label>
-                        <input type="date" asp-for="StartDate" />
+                        <input type="date" asp-for="StartDate"  />
                         <span asp-validation-for="StartDate"></span>
 
                     </td>
@@ -32,7 +32,7 @@
                 <tr>
                     <td>
                         <label asp-for="Status">Status</label>
-                        <input type="number" min="1" max="2" asp-for="Status" />
+                        <input type="number" min="1" max="2" value="1" asp-for="Status" />
                         <span asp-validation-for="Status"></span>
                     </td>
                 </tr>

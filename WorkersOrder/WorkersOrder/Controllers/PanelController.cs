@@ -118,12 +118,13 @@ namespace WorkersOrder.Controllers
                 reservations = table.FirstOrDefault(u => u.ReservationID == Convert.ToInt32(id));
                 if(service.ValidDate(model.StartDate,model.EndDate, DateTime.Now))
                 {
-                    reservations.IDWorker = employee.IDWorker;
-
+                    reservations.Status = model.Status;
                     reservations.StartDate = model.StartDate;
                     reservations.EndDate = model.EndDate;
+                    if (reservations.Status == 2)
+                        reservations.IDWorker = employee.IDWorker;
+                    
 
-                    reservations.Status = model.Status;
                     service.UpdateReservation(reservations);
                     id = null;
                     return RedirectToAction("Admin");

@@ -168,7 +168,7 @@ namespace WorkersOrder.Service
         }
         public bool ValidDate(DateTime Start, DateTime End, DateTime dateNow)
         {
-            if (Start <= End && Start>=dateNow)
+            if (Start <= End && (Start>=dateNow.AddDays(-1)))
                 return true;
             else return false;
         }
